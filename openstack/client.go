@@ -805,3 +805,13 @@ func NewRDSV3(client *gophercloud.ProviderClient, eo gophercloud.EndpointOpts) (
 	sc, err := initClientOpts(client, eo, "rdsv3")
 	return sc, err
 }
+// NewRDSV1 creates a ServiceClient that may be used with the v1 rds
+// package.
+func NewRDSV1(client *gophercloud.ProviderClient, eo gophercloud.EndpointOpts) (*gophercloud.ServiceClient, error) {
+	sc, err := initClientOpts(client, eo, "rdsv1")
+    sc.MoreHeaders = map[string]string{
+        "X-Language":   "en-us",
+        "Content-Type": "application/json",
+    }
+	return sc, err
+}
